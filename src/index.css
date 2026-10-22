@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-100: #fff8e1;
+  --color-brand-200: #ffecb3;
+  --color-brand-300: #ffd54f;
+  --color-brand-400: #ffca28;
+  --color-brand-500: #f9a825;
+  --color-brand-600: #e09515;
+  --color-cream-50: #fffdf7;
+  --color-cream-100: #fff9ea;
+  --color-ink-900: #3a3226;
+  --color-ink-700: #5e5344;
+  --color-ink-500: #8c8478;
+  --color-line: #f0e6ce;
+  --color-danger-50: #fff1f0;
+  --color-danger-200: #ffc9c4;
+  --color-danger-500: #e0524a;
+  --color-danger-700: #b23b34;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC",
+    sans-serif;
+  --font-reading: "Songti SC", "SimSun", "Noto Serif SC", "Source Han Serif SC", serif;
+
+  --shadow-soft: 0 18px 40px -22px rgba(150, 110, 20, 0.45);
+  --shadow-card: 0 10px 24px -14px rgba(120, 90, 20, 0.4);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #ffe08a;
+  color: #3a3226;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+/* ---------- 阅读主题 ---------- */
+
+.reader-surface {
+  --reader-bg: #fbf3e0;
+  --reader-fg: #4a3f35;
+  --reader-muted: #9c8e78;
+  --reader-line: #ede0c5;
+  --chrome-bg: rgba(255, 253, 247, 0.94);
+  --panel-bg: #fffdf7;
+  --panel-fg: #3a3226;
+  --panel-muted: #8c8478;
+  --panel-line: #f0e6ce;
+
+  background: var(--reader-bg);
+  color: var(--reader-fg);
+}
+
+.reader-surface[data-theme="light"] {
+  --reader-bg: #ffffff;
+  --reader-fg: #2b2b2b;
+  --reader-muted: #9a938a;
+  --reader-line: #eeeae2;
+  --chrome-bg: rgba(255, 255, 255, 0.95);
+  --panel-bg: #ffffff;
+  --panel-fg: #2b2b2b;
+  --panel-muted: #8f887d;
+  --panel-line: #efece6;
+}
+
+.reader-surface[data-theme="dark"] {
+  --reader-bg: #1e1b18;
+  --reader-fg: #c9c2b6;
+  --reader-muted: #7d7466;
+  --reader-line: #332e28;
+  --chrome-bg: rgba(38, 34, 30, 0.95);
+  --panel-bg: #26221e;
+  --panel-fg: #d8d1c4;
+  --panel-muted: #8b8275;
+  --panel-line: #3a342d;
+}
+
+.reader-text {
+  font-family: var(--font-reading);
+  font-size: var(--reader-font-size, 19px);
+  line-height: 1.8;
+  text-align: left;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+.reader-text p {
+  margin: 0 0 0.8em;
+  text-indent: 2em;
+}
+
+.reader-text p:last-child {
+  margin-bottom: 0;
+}
+
+.reader-text img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 夜间模式下奶龙与装饰降亮 */
+.reader-surface[data-theme="dark"] .mascot {
+  filter: brightness(0.78) saturate(0.86);
+}
+
+/* ---------- 细节 ---------- */
+
+.library-backdrop {
+  background:
+    radial-gradient(1100px 520px at 12% -10%, rgba(255, 213, 79, 0.35), transparent 62%),
+    radial-gradient(900px 460px at 92% 0%, rgba(255, 202, 40, 0.24), transparent 58%),
+    #fffdf7;
+}
+
+.dragon-breathe {
+  animation: dragon-breathe 2.6s ease-in-out infinite;
+  transform-origin: 50% 88%;
+}
+
+.dragon-float {
+  animation: dragon-float 3.6s ease-in-out infinite;
+}
+
+@keyframes dragon-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes dragon-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.chapter-list::-webkit-scrollbar,
+.panel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chapter-list::-webkit-scrollbar-thumb,
+.panel-scroll::-webkit-scrollbar-thumb {
+  background: #e8d9b6;
+  border-radius: 999px;
+}
+
+.reader-surface[data-theme="dark"] .chapter-list::-webkit-scrollbar-thumb,
+.reader-surface[data-theme="dark"] .panel-scroll::-webkit-scrollbar-thumb {
+  background: #4a4238;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dragon-breathe,
+  .dragon-float {
+    animation: none;
+  }
+}
